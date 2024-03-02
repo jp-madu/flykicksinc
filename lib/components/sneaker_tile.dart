@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flykicksinc/model/sneaker.dart';
 
 class SneakerTile extends StatelessWidget {
@@ -8,24 +9,69 @@ class SneakerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 300,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.inversePrimary,
+        borderRadius: BorderRadius.circular(12),
       ),
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(25),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //display sneaker image
-          Icon(Icons.favorite),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //display sneaker image
+              AspectRatio(
+                aspectRatio: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  width: double.infinity,
+                  padding: EdgeInsets.all(25),
+                  child: Icon(Icons.favorite),
+                ),
+              ),
 
-          //display sneaker name
-          Text(sneaker.name),
+              const SizedBox(
+                height: 25,
+              ),
 
-          //display produt description
-          Text(sneaker.description),
+              //display sneaker name
+              Text(
+                sneaker.name,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              //display produt description
+              Text(sneaker.description),
+            ],
+          ),
 
           //display price + add to cart icon button
-          Text('\$${sneaker.price}'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('\$${sneaker.price}'),
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.add),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
