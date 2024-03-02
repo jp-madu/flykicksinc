@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flykicksinc/data/cart_notifier.dart';
 import 'package:flykicksinc/model/sneaker.dart';
 
-class SneakerTile extends StatelessWidget {
+class SneakerTile extends ConsumerWidget {
   final Sneaker sneaker;
   SneakerTile({super.key, required this.sneaker});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       width: 300,
       decoration: BoxDecoration(
@@ -66,7 +68,9 @@ class SneakerTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ref.read(cartNotifierProvider.notifier).addToCart(sneaker);
+                  },
                   icon: Icon(Icons.add),
                 ),
               )
