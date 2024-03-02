@@ -8,6 +8,15 @@ class SneakerTile extends ConsumerWidget {
   final Sneaker sneaker;
   SneakerTile({super.key, required this.sneaker});
 
+  void  addSneakerToCart(BuildContext context){
+    showDialog(context: context, 
+    builder: (context)=> AlertDialog(
+      
+
+
+    ),),
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
@@ -69,6 +78,7 @@ class SneakerTile extends ConsumerWidget {
                 ),
                 child: IconButton(
                   onPressed: () {
+                    addSneakerToCart(context);
                     ref.read(cartNotifierProvider.notifier).addToCart(sneaker);
                   },
                   icon: Icon(Icons.add),
