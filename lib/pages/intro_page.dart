@@ -16,22 +16,34 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   int _selectedIndex = 0;
 
+  void navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   List<Widget> _pages = [
-    CartPage(),
+    //store page
     StorePage(),
+
+    //cart page
+    CartPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      bottomNavigationBar: GoogleNavbar(),
+      bottomNavigationBar: GoogleNavbar(
+        onTabChange: (index) => navigateBottomBar(index),
+      ),
       appBar: AppBar(
         title: Text('Store'),
         elevation: 0,
         actions: [Icon(Icons.shopping_cart_checkout)],
       ),
       drawer: GlobalDrawer(),
+      body: _pages[_selectedIndex],
     );
   }
 }
