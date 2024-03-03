@@ -15,9 +15,7 @@ class ShoppingCartIconWithOverlay extends ConsumerWidget {
       children: [
         IconButton(
             icon: const Icon(Icons.shopping_cart, size: 35.0),
-            onPressed: () {
-              context.read(selectedIndexProvider).changeIndex(1);
-            }),
+            onPressed: () {}),
         if (cartCount > 0)
           Positioned(
             right: 8,
