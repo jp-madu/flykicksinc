@@ -8,17 +8,35 @@ class SneakerTile extends ConsumerWidget {
   final Sneaker sneaker;
   SneakerTile({super.key, required this.sneaker});
 
-  void  addSneakerToCart(BuildContext context){
-    showDialog(context: context, 
-    builder: (context)=> AlertDialog(
-      
-
-
-    ),),
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void addSneakerToCart() {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text('Add this pair of sneaker to your cart?'),
+          actions: [
+            //cancel button
+            MaterialButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancel'),
+            ),
+            //proceed to cart button
+            MaterialButton(
+              onPressed: () {
+                //pop dialog box
+                Navigator.pop(context);
+
+                //add to cart
+                ref.read(cartNotifierProvider.notifier).addToCart(sneaker);
+              },
+              child: Text('Yes'),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Container(
       width: 300,
       decoration: BoxDecoration(
@@ -77,10 +95,7 @@ class SneakerTile extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: IconButton(
-                  onPressed: () {
-                    addSneakerToCart(context);
-                    ref.read(cartNotifierProvider.notifier).addToCart(sneaker);
-                  },
+                  onPressed: () => addSneakerToCart(),
                   icon: Icon(Icons.add),
                 ),
               )
