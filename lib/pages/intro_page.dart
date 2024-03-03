@@ -5,6 +5,7 @@ import 'package:flykicksinc/pages/cart_page.dart';
 import 'package:flykicksinc/pages/store_page.dart';
 
 import '../components/global_drawer.dart';
+import '../components/shopping_cart.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -40,7 +41,9 @@ class _IntroPageState extends State<IntroPage> {
       appBar: AppBar(
         title: Text('Store'),
         elevation: 0,
-        actions: [Icon(Icons.shopping_cart_checkout)],
+        actions: [
+          ShoppingCartIconWithOverlay(),
+        ],
       ),
       drawer: GlobalDrawer(),
       body: _pages[_selectedIndex],
