@@ -24,7 +24,7 @@ class GlobalDrawer extends StatelessWidget {
               title: Text('Exit'),
               onTap: () => Navigator.pop(context),
             ),
-          )
+          ),
         ],
       ),
     );
