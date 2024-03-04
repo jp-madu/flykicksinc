@@ -21,7 +21,7 @@ class _StorePageState extends State<StorePage> {
         //welcome note.
         Center(
           child: Text(
-            'Yo! Nike boy. Cope the fliest kicks here fam!!',
+            'Welcome fam. Cope the fliest kicks here!!',
             style: TextStyle(
               fontSize: 18,
             ),

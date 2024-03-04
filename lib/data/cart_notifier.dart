@@ -26,4 +26,12 @@ class CartNotifier extends ChangeNotifier {
     _sneakersInCart.clear();
     notifyListeners();
   }
+
+  double getTotalAmountInDollars() {
+    double totalAmount = 0.0;
+    for (var sneaker in _sneakersInCart) {
+      totalAmount += sneaker.price;
+    }
+    return totalAmount;
+  }
 }

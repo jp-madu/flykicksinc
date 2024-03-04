@@ -8,6 +8,8 @@ class CartPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final cartItemNotifier = ref.watch(cartNotifierProvider).sneakersInCart;
+    double totalAmount =
+        ref.watch(cartNotifierProvider).getTotalAmountInDollars();
     //remove sneaker from cart method with dialog box
 
     return Column(
@@ -70,6 +72,24 @@ class CartPage extends ConsumerWidget {
                       ),
                     );
                   }),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Total:',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '\$${totalAmount}',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
         )
       ],
     );

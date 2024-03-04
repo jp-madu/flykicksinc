@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flykicksinc/components/google_navbar.dart';
 import 'package:flykicksinc/pages/cart_page.dart';
@@ -39,8 +40,6 @@ class _IntroPageState extends State<IntroPage> {
         onTabChange: (index) => navigateBottomBar(index),
       ),
       appBar: AppBar(
-        title: Text('Store'),
-        elevation: 0,
         actions: [
           ShoppingCartIconWithOverlay(),
         ],

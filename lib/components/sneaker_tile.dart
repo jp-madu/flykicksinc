@@ -40,7 +40,7 @@ class SneakerTile extends ConsumerWidget {
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.inversePrimary,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(12),
       ),
       margin: const EdgeInsets.all(10),

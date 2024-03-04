@@ -14,8 +14,9 @@ class ShoppingCartIconWithOverlay extends ConsumerWidget {
       alignment: Alignment.center,
       children: [
         IconButton(
-            icon: const Icon(Icons.shopping_cart, size: 35.0),
-            onPressed: () {}),
+          icon: const Icon(Icons.shopping_cart, size: 35.0),
+          onPressed: () {},
+        ),
         if (cartCount > 0)
           Positioned(
             right: 8,
