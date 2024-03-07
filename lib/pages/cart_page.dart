@@ -1,13 +1,43 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flykicksinc/data/cart_notifier.dart';
+import 'package:flykicksinc/model/sneaker.dart';
 
 class CartPage extends ConsumerWidget {
   const CartPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //clear cart dialog box
+
+    void clearSneakersInCart() {
+      //show a dialog box that asks users to confirm remove sneaker from cart
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Text('Remove all sneakers from cart?'),
+          actions: [
+            //the cancel button
+            MaterialButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('Cancel'),
+            ),
+            //proceed to remove sneaker from cart
+            MaterialButton(
+                child: Text('Yes'),
+                onPressed: () {
+                  //pop the dislog box
+                  Navigator.pop(context);
+                  //remove from cart
+                  ref.read(cartNotifierProvider.notifier).clearCart();
+                }),
+          ],
+        ),
+      );
+    }
+
     final cartItemNotifier = ref.watch(cartNotifierProvider).sneakersInCart;
     double totalAmount =
         ref.watch(cartNotifierProvider).getTotalAmountInDollars();
@@ -17,6 +47,7 @@ class CartPage extends ConsumerWidget {
       children: [
         //show items in cart
         Expanded(
+          flex: 2,
           child: cartItemNotifier.isEmpty
               ? Center(
                   child: Text(
@@ -53,7 +84,7 @@ class CartPage extends ConsumerWidget {
                                   Navigator.pop(context);
                                   //remove from cart
                                   ref
-                                      .read(cartNotifierProvider)
+                                      .read(cartNotifierProvider.notifier)
                                       .removeFromCart(pairOfSneaker);
                                 }),
                           ],
@@ -75,7 +106,10 @@ class CartPage extends ConsumerWidget {
                     );
                   }),
         ),
-        Padding(
+
+        Expanded(
+          flex: 1,
+          child: Padding(
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
@@ -107,12 +141,43 @@ class CartPage extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(vertical: 12.0),
                         child: Text(
                           'Checkout',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
                         ),
                       ))),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    clearSneakersInCart();
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Color(0xffE9ECEF),
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12.0),
+                        child: Text(
+                          'Clear Cart',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                      ),
+                    ),
+                  ),
                 )
               ],
-            ))
+            ),
+          ),
+        ),
       ],
     );
   }

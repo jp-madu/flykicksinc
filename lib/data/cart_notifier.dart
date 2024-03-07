@@ -22,7 +22,7 @@ class CartNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCart(Sneaker sneaker) {
+  void clearCart() {
     _sneakersInCart.clear();
     notifyListeners();
   }
