@@ -62,6 +62,7 @@ class CartPage extends ConsumerWidget {
 
                     //return as a cart tile UI
                     return ListTile(
+                      leading: Image.asset(pairOfSneaker.imagePath),
                       title: Text(pairOfSneaker.name),
                       subtitle: Text('\$${pairOfSneaker.price}'),
                       trailing: IconButton(

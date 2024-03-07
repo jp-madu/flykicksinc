@@ -62,7 +62,7 @@ class SneakerTile extends ConsumerWidget {
                   ),
                   width: double.infinity,
                   padding: EdgeInsets.all(25),
-                  child: Icon(Icons.favorite),
+                  child: Image.asset(sneaker.imagePath),
                 ),
               ),
 
