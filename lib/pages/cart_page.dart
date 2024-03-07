@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flykicksinc/data/cart_notifier.dart';
 
@@ -75,23 +76,43 @@ class CartPage extends ConsumerWidget {
                   }),
         ),
         Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Total:',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '\$${totalAmount}',
-                style: TextStyle(
-                  fontSize: 18,
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total:',
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '\$${totalAmount}',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        )
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Color(0xffe83f3a),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12.0),
+                        child: Text(
+                          'Checkout',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ))),
+                )
+              ],
+            ))
       ],
     );
   }
