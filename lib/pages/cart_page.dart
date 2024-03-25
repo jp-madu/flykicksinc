@@ -27,13 +27,14 @@ class CartPage extends ConsumerWidget {
             ),
             //proceed to remove sneaker from cart
             MaterialButton(
-                child: Text('Yes'),
-                onPressed: () {
-                  //pop the dislog box
-                  Navigator.pop(context);
-                  //remove from cart
-                  ref.read(cartNotifierProvider.notifier).clearCart();
-                }),
+              child: Text('Yes'),
+              onPressed: () {
+                //pop the dislog box
+                Navigator.pop(context);
+                //remove from cart
+                ref.read(cartNotifierProvider.notifier).clearCart();
+              },
+            ),
           ],
         ),
       );
