@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flykicksinc/components/colors.dart';
 import 'package:flykicksinc/data/cart_notifier.dart';
 import 'package:flykicksinc/model/sneaker.dart';
 
@@ -40,7 +41,7 @@ class SneakerTile extends ConsumerWidget {
     return Container(
       width: 300,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
+        color: FlyKicksIncColors.primary.shade200,
         borderRadius: BorderRadius.circular(12),
       ),
       margin: const EdgeInsets.all(10),
@@ -88,7 +89,10 @@ class SneakerTile extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('\$${sneaker.price}'),
+              Text(
+                '\$${sneaker.price}',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,

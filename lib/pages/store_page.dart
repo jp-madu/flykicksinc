@@ -4,7 +4,9 @@ import 'package:flykicksinc/model/sneaker.dart';
 import '../components/sneaker_tile.dart';
 
 class StorePage extends StatefulWidget {
-  const StorePage({super.key});
+  const StorePage({
+    super.key,
+  });
 
   @override
   State<StorePage> createState() => _StorePageState();

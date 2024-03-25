@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flykicksinc/data/cart_notifier.dart';
-import 'package:flykicksinc/model/sneaker.dart';
 
 class CartPage extends ConsumerWidget {
-  const CartPage({super.key});
+  CartPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,7 +50,7 @@ class CartPage extends ConsumerWidget {
         Expanded(
           flex: 2,
           child: cartItemNotifier.isEmpty
-              ? Center(
+              ? const Center(
                   child: Text(
                   'You haven\'t got a sneaker in the cart yet',
                   style: TextStyle(
@@ -68,17 +69,17 @@ class CartPage extends ConsumerWidget {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                          content: Text(
+                          content: const Text(
                               'Remove this pair of sneakers from your cart?'),
                           actions: [
                             //the cancel button
                             MaterialButton(
                               onPressed: () => Navigator.pop(context),
-                              child: Text('Cancel'),
+                              child: const Text('Cancel'),
                             ),
                             //proceed to remove sneaker from cart
                             MaterialButton(
-                                child: Text('Yes'),
+                                child: const Text('Yes'),
                                 onPressed: () {
                                   //pop the dislog box
                                   Navigator.pop(context);
@@ -108,76 +109,80 @@ class CartPage extends ConsumerWidget {
         ),
 
         Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total:',
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '\$${totalAmount}',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Color(0xffe83f3a),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12.0),
-                        child: Text(
-                          'Checkout',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+            flex: 1,
+            child: cartItemNotifier.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Total:',
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '\$${totalAmount}',
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ],
                         ),
-                      ))),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    clearSneakersInCart();
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Color(0xffE9ECEF),
-                        borderRadius: BorderRadius.circular(8)),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12.0),
-                        child: Text(
-                          'Clear Cart',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: Color(0xffe83f3a),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Center(
+                                  child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 12.0),
+                                child: Text(
+                                  'Checkout',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ))),
                         ),
-                      ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            clearSneakersInCart();
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: Color(0xffE9ECEF),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const Center(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12.0),
+                                child: Text(
+                                  'Clear Cart',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+                  )
+                : const SizedBox(
+                    height: 10,
+                  )),
       ],
     );
   }

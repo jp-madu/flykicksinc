@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/cart_notifier.dart';
 
 class ShoppingCartIconWithOverlay extends ConsumerWidget {
-  const ShoppingCartIconWithOverlay({Key? key}) : super(key: key);
+  void Function()? onPressed;
+  ShoppingCartIconWithOverlay({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +16,7 @@ class ShoppingCartIconWithOverlay extends ConsumerWidget {
       children: [
         IconButton(
           icon: const Icon(Icons.shopping_cart, size: 35.0),
-          onPressed: () {},
+          onPressed: onPressed,
         ),
         if (cartCount > 0)
           Positioned(
